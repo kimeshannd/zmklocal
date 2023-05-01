@@ -190,10 +190,7 @@ static void zmk_rgb_underglow_tick(struct k_work *work) {
         break;
     }
 
-    int err = led_strip_update_rgb(led_strip, pixels, STRIP_NUM_PIXELS);
-    if (err < 0) {
-        LOG_ERR("Failed to update the RGB strip (%d)", err);
-    }
+    led_strip_update_rgb(led_strip, pixels, STRIP_NUM_PIXELS);
 }
 
 K_WORK_DEFINE(underglow_work, zmk_rgb_underglow_tick);
