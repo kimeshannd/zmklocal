@@ -270,9 +270,8 @@ int zmk_keymap_sensor_triggered(uint8_t sensor_number, const struct device *sens
                 continue;
             }
 
-            struct zmk_behavior_binding_event event = {
-                .position = ZMK_VIRTUAL_KEY_POSITION_SENSOR(sensor_number), .timestamp = timestamp};
-            ret = behavior_sensor_keymap_binding_triggered(binding, sensor, event);
+            const uint32_t position = ZMK_VIRTUAL_KEY_POSITION_SENSOR(sensor_number);
+            ret = behavior_sensor_keymap_binding_triggered(binding, sensor, position, timestamp);
 
             if (ret > 0) {
                 LOG_DBG("behavior processing to continue to next layer");
